@@ -1,0 +1,12 @@
+{
+  "chats": [
+    {
+      "id": "ac_mucqkbnr_6otu5",
+      "title": "Новый чат",
+      "createdAt": 1790085292551,
+      "updatedAt": 1790085292551,
+      "messages": []
+    }
+  ],
+  "activeChatId": "ac_mucqkbnr_6otu5"
+}

@@ -1,0 +1,339 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *, .dark-gray *)); /* (правка 61) тема «Аврора» удалена */
+
+/* System font stacks — defined locally so the build works fully offline
+   (no Google Fonts fetch at build time, required for portable/offline use).
+   Cross-platform: Windows (Segoe UI / Consolas / Cascadia),
+   macOS (-apple-system / SF Mono), Linux (Roboto / Liberation Mono / Menlo). */
+:root {
+  --font-geist-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-geist-mono: ui-monospace, "SF Mono", "Cascadia Code", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-creative: var(--creative);
+  --color-creative-foreground: var(--creative-foreground);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #f0f0f3;
+  --foreground: #18181b;
+  --card: #ffffff;
+  --card-foreground: #18181b;
+  --popover: #ffffff;
+  --popover-foreground: #18181b;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --secondary: #e8e8ec;
+  --secondary-foreground: #18181b;
+  --muted: #e8e8ec;
+  --muted-foreground: #6b6b80;
+  --accent: #cffafe;
+  --accent-foreground: #155e75;
+  --destructive: #ef4444;
+  --border: #d4d4d8;
+  --input: #d4d4d8;
+  --ring: #0891b2;
+  --chart-1: #06b6d4;
+  --chart-2: #8b5cf6;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #18181b;
+  --sidebar-primary: #0891b2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #cffafe;
+  --sidebar-accent-foreground: #155e75;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #0891b2;
+  --creative: #06b6d4;
+  --creative-foreground: #ffffff;
+
+  /* Surface levels — clear hierarchy in light mode */
+  --surface-0: #e8e8ec;
+  --surface-1: #f5f5f7;
+  --surface-2: #ffffff;
+  --surface-3: #ededee;
+  --surface-4: #e0e0e5;
+
+  /* (правка 97) Акценты экрана-заставки — приглушённые для светлой темы */
+  --splash-a: #d97706;
+  --splash-b: #7c3aed;
+  --splash-c: #0891b2;
+  --splash-glow: rgba(217, 119, 6, 0.25);
+}
+
+.dark {
+  /* (правка 97) Акценты заставки — яркие на глубоком фоне */
+  --splash-a: #f59e0b;
+  --splash-b: #8b5cf6;
+  --splash-c: #06b6d4;
+  --splash-glow: rgba(245, 158, 11, 0.35);
+  --background: #07070c;
+  --foreground: #e8e8ed;
+  --card: #101018;
+  --card-foreground: #e8e8ed;
+  --popover: #101018;
+  --popover-foreground: #e8e8ed;
+  --primary: #06b6d4;
+  --primary-foreground: #04121a;
+  --secondary: #17212c;
+  --secondary-foreground: #e8e8ed;
+  --muted: #141420;
+  --muted-foreground: #6b7280;
+  --accent: #12212e;
+  --accent-foreground: #e8e8ed;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.07);
+  --input: rgba(255, 255, 255, 0.09);
+  --ring: #06b6d4;
+  --chart-1: #06b6d4;
+  --chart-2: #8b5cf6;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+  --sidebar: #0a0c10;
+  --sidebar-foreground: #e8e8ed;
+  --sidebar-primary: #06b6d4;
+  --sidebar-primary-foreground: #04121a;
+  --sidebar-accent: #12212e;
+  --sidebar-accent-foreground: #e8e8ed;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: #06b6d4;
+  --creative: #06b6d4;
+  --creative-foreground: #04121a;
+
+  /* Surface levels */
+  --surface-0: #07070c;
+  --surface-1: #0a0c11;
+  --surface-2: #10141c;
+  --surface-3: #161c27;
+  --surface-4: #1e2634;
+}
+
+.dark-gray {
+  /* (правка 97) Акценты заставки — чуть спокойнее, под серую тему */
+  --splash-a: #f59e0b;
+  --splash-b: #a78bfa;
+  --splash-c: #22d3ee;
+  --splash-glow: rgba(245, 158, 11, 0.28);
+  --background: #1c1c20;
+  --foreground: #e8e8ec;
+  --card: #252529;
+  --card-foreground: #e8e8ec;
+  --popover: #2b2b31;
+  --popover-foreground: #e8e8ec;
+  --primary: #06b6d4;
+  --primary-foreground: #04121a;
+  --secondary: #2e2e34;
+  --secondary-foreground: #e8e8ec;
+  --muted: #2a2a30;
+  --muted-foreground: #9a9aa4;
+  --accent: #33333a;
+  --accent-foreground: #e8e8ec;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #06b6d4;
+  --chart-1: #06b6d4;
+  --chart-2: #8b5cf6;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+  --sidebar: #222226;
+  --sidebar-foreground: #e8e8ec;
+  --sidebar-primary: #06b6d4;
+  --sidebar-primary-foreground: #04121a;
+  --sidebar-accent: #33333a;
+  --sidebar-accent-foreground: #e8e8ec;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #06b6d4;
+  --creative: #06b6d4;
+  --creative-foreground: #04121a;
+
+  /* Surface levels — neutral gray, no blue tint */
+  --surface-0: #1c1c20;
+  --surface-1: #232328;
+  --surface-2: #2b2b32;
+  --surface-3: #33333a;
+  --surface-4: #3c3c44;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar (правка 139) — тоньше, чтобы не «выходить» за рамки полей ввода */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.28);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.5);
+}
+
+/* Fix: ensure all dropdown/popover/select content has a solid background */
+[data-slot="select-content"],
+[data-slot="dropdown-menu-content"],
+[data-slot="popover-content"],
+[data-slot="dialog-content"],
+[data-slot="command-dialog"] {
+  background-color: var(--surface-3, #161c27) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* Creative gradient backgrounds (violet → cyan, the H3 Studio identity) */
+.gradient-creative {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+}
+
+.gradient-creative-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(16, 16, 24, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+:root:not(.dark):not(.dark-gray) .glass {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.glass-border {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:root:not(.dark):not(.dark-gray) .glass-border {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Glow effects */
+.glow-creative {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.16), 0 0 40px rgba(124, 58, 237, 0.07);
+}
+
+.glow-creative-sm {
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.1);
+}
+
+/* Soft aurora backdrop — used behind hero/empty states */
+.aurora-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.aurora-bg::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 70%;
+  z-index: -1;
+  background:
+    radial-gradient(45% 55% at 20% 30%, rgba(124, 58, 237, 0.14), transparent 70%),
+    radial-gradient(40% 50% at 80% 20%, rgba(6, 182, 212, 0.13), transparent 70%),
+    radial-gradient(35% 45% at 55% 70%, rgba(16, 185, 129, 0.07), transparent 70%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+:root:not(.dark):not(.dark-gray) .aurora-bg::before {
+  background:
+    radial-gradient(45% 55% at 20% 30%, rgba(124, 58, 237, 0.08), transparent 70%),
+    radial-gradient(40% 50% at 80% 20%, rgba(6, 182, 212, 0.08), transparent 70%);
+}
+
+/* Subtle pulse for generating state */
+@keyframes creative-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.creative-pulse {
+  animation: creative-pulse 2s ease-in-out infinite;
+}
+
+/* Slow ambient drift for decorative blobs */
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -3%, 0) scale(1.06); }
+}
+
+.animate-drift {
+  animation: drift 14s ease-in-out infinite;
+}
+
+/* Range slider — full custom look for the duration control */
+input[type="range"] {
+  cursor: pointer;
+}
+
+/* Native select inside cards keeps the dark surface */
+select {
+  color-scheme: dark;
+}
+
+:root:not(.dark):not(.dark-gray) select {
+  color-scheme: light;
+}
